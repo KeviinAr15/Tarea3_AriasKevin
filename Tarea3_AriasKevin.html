@@ -24,6 +24,41 @@ ul.task-list li input[type="checkbox"] {
 width: 0.8em;
 margin: 0 0.8em 0.2em -1em;  vertical-align: middle;
 }
+
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+}
+pre.numberSource { margin-left: 3em; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -2201,9 +2236,9 @@ vertical-align: -.125em;
 
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>RESULTADO_1A = pendiente
-RESULTADO_1B = pendiente
-RESULTADO_1C = pendiente
+<pre><code>RESULTADO_1A = 19
+RESULTADO_1B = 2025-02-01
+RESULTADO_1C = 31
 RESULTADO_2A = pendiente
 RESULTADO_2B = pendiente
 RESULTADO_2C = pendiente
@@ -2215,6 +2250,158 @@ RESULTADO_3C = pendiente</code></pre>
 </div>
 <section id="ejercicio-1-alertas-por-ventana-móvil" class="level2">
 <h2 class="anchored" data-anchor-id="ejercicio-1-alertas-por-ventana-móvil">Ejercicio 1 — Alertas por ventana móvil</h2>
+<p>Con ventana = 14 días y k = 2.25 hubo 19 días con alerta. La primera fue el 2025-02-01.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(ej1[<span class="fu">which</span>(ej1<span class="sc">$</span>alerta), ], <span class="at">digits =</span> <span class="dv">1</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">fecha</th>
+<th style="text-align: right;">n.tx</th>
+<th style="text-align: right;">media</th>
+<th style="text-align: right;">desv</th>
+<th style="text-align: left;">alerta</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">2025-02-01</td>
+<td style="text-align: right;">3003</td>
+<td style="text-align: right;">2781.8</td>
+<td style="text-align: right;">38.5</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-02-02</td>
+<td style="text-align: right;">2990</td>
+<td style="text-align: right;">2796.9</td>
+<td style="text-align: right;">70.7</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-02-03</td>
+<td style="text-align: right;">3040</td>
+<td style="text-align: right;">2811.3</td>
+<td style="text-align: right;">87.4</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-03-01</td>
+<td style="text-align: right;">3293</td>
+<td style="text-align: right;">3023.4</td>
+<td style="text-align: right;">32.1</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-03-02</td>
+<td style="text-align: right;">3343</td>
+<td style="text-align: right;">3043.1</td>
+<td style="text-align: right;">78.7</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-05-01</td>
+<td style="text-align: right;">3354</td>
+<td style="text-align: right;">2779.6</td>
+<td style="text-align: right;">58.4</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-05-02</td>
+<td style="text-align: right;">3390</td>
+<td style="text-align: right;">2816.6</td>
+<td style="text-align: right;">164.5</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-05-19</td>
+<td style="text-align: right;">3479</td>
+<td style="text-align: right;">3366.6</td>
+<td style="text-align: right;">38.9</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-07-01</td>
+<td style="text-align: right;">3450</td>
+<td style="text-align: right;">2448.0</td>
+<td style="text-align: right;">41.2</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-07-02</td>
+<td style="text-align: right;">3588</td>
+<td style="text-align: right;">2518.2</td>
+<td style="text-align: right;">271.3</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-07-03</td>
+<td style="text-align: right;">3655</td>
+<td style="text-align: right;">2604.7</td>
+<td style="text-align: right;">389.9</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-07-31</td>
+<td style="text-align: right;">3697</td>
+<td style="text-align: right;">3568.6</td>
+<td style="text-align: right;">43.7</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-09-26</td>
+<td style="text-align: right;">2606</td>
+<td style="text-align: right;">2488.3</td>
+<td style="text-align: right;">52.1</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-10-01</td>
+<td style="text-align: right;">3241</td>
+<td style="text-align: right;">2507.5</td>
+<td style="text-align: right;">61.5</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-10-02</td>
+<td style="text-align: right;">3271</td>
+<td style="text-align: right;">2562.4</td>
+<td style="text-align: right;">204.5</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-10-03</td>
+<td style="text-align: right;">3306</td>
+<td style="text-align: right;">2617.5</td>
+<td style="text-align: right;">277.3</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-11-20</td>
+<td style="text-align: right;">3297</td>
+<td style="text-align: right;">3173.8</td>
+<td style="text-align: right;">46.5</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-11-27</td>
+<td style="text-align: right;">3308</td>
+<td style="text-align: right;">3179.7</td>
+<td style="text-align: right;">55.2</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-12-22</td>
+<td style="text-align: right;">3218</td>
+<td style="text-align: right;">3116.6</td>
+<td style="text-align: right;">34.8</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </section>
 <section id="ejercicio-2-ley-de-benford-por-cantón" class="level2">
 <h2 class="anchored" data-anchor-id="ejercicio-2-ley-de-benford-por-cantón">Ejercicio 2 — Ley de Benford por cantón</h2>
