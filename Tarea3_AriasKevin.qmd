@@ -37,6 +37,12 @@ resp <- c("1A" = "pendiente", "1B" = "pendiente", "1C" = "pendiente",
           "2A" = "pendiente", "2B" = "pendiente", "2C" = "pendiente",
           "2D" = "pendiente", "3A" = "pendiente", "3B" = "pendiente",
           "3C" = "pendiente")
+
+# Ejercicio 1
+ej1 <- alerta.movil(tx, ventana, k.alerta)
+resp["1A"] <- sum(ej1$alerta, na.rm = TRUE)
+resp["1B"] <- format(min(ej1$fecha[which(ej1$alerta)]))
+resp["1C"] <- sum(alerta.movil(tx, 7, 2)$alerta, na.rm = TRUE)
 ```
 
 ```{r}
@@ -47,6 +53,12 @@ cat(paste0("RESULTADO_", names(resp), " = ", resp), sep = "\n")
 ```
 
 ## Ejercicio 1 — Alertas por ventana móvil
+Con ventana = `r ventana` días y k = `r k.alerta` hubo `r resp["1A"]` días con alerta. La primera fue el `r resp["1B"]`.
+
+```{r}
+#| label: tabla-ej1
+knitr::kable(ej1[which(ej1$alerta), ], digits = 1, row.names = FALSE)
+```
 
 ## Ejercicio 2 — Ley de Benford por cantón
 
