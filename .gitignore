@@ -1,0 +1,19 @@
+# R / RStudio
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+
+# Base del profesor (es otro repositorio)
+base/
+
+# Datos generados por cod/01_datos.R
+data/*
+!data/README.md
+
+# Quarto
+.quarto/
+*_files/
+
+# Excel abierto (archivos temporales)
+~$*.xlsx
