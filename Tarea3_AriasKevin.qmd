@@ -1,0 +1,53 @@
+---
+title: "Tarea 3 Herramientas de Ciencias de Datos"
+author: "Kevin Arias - C4C755"
+lang: es
+format:
+  html:
+    embed-resources: true
+execute:
+  warning: false
+  message: false
+---
+
+```{r}
+#| label: setup
+#| include: false
+library(ggplot2)
+source("cod/funciones_tarea3.R")
+
+tx <- read.csv("data/transacciones_2025.csv", sep = ";",
+               fileEncoding = "UTF-8")
+cantones <- read.csv("data/cantones.csv", fileEncoding = "UTF-8")
+parametros <- read.csv("config/parametros_tarea3.csv", sep = ";",
+                       fileEncoding = "UTF-8")
+
+ventana       <- as.numeric(parametros$valor[parametros$parametro == "ventana"])
+k.alerta      <- as.numeric(parametros$valor[parametros$parametro == "k.alerta"])
+canal.benford <- parametros$valor[parametros$parametro == "canal.benford"]
+tasa.anual    <- as.numeric(parametros$valor[parametros$parametro == "tasa.anual"])
+canal.interes <- parametros$valor[parametros$parametro == "canal.interes"]
+```
+
+```{r}
+#| label: calculos
+#| include: false
+# Cada rama reemplaza aquí sus "pendiente" por el cálculo
+resp <- c("1A" = "pendiente", "1B" = "pendiente", "1C" = "pendiente",
+          "2A" = "pendiente", "2B" = "pendiente", "2C" = "pendiente",
+          "2D" = "pendiente", "3A" = "pendiente", "3B" = "pendiente",
+          "3C" = "pendiente")
+```
+
+```{r}
+#| label: hoja-respuestas
+#| echo: false
+#| comment: ""
+cat(paste0("RESULTADO_", names(resp), " = ", resp), sep = "\n")
+```
+
+## Ejercicio 1 — Alertas por ventana móvil
+
+## Ejercicio 2 — Ley de Benford por cantón
+
+## Ejercicio 3 — Valor acumulado con interés
