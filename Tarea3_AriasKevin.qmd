@@ -60,6 +60,19 @@ Con ventana = `r ventana` días y k = `r k.alerta` hubo `r resp["1A"]` días con
 knitr::kable(ej1[which(ej1$alerta), ], digits = 1, row.names = FALSE)
 ```
 
+```{r}
+#| label: grafico-ej1
+grafico.ej1 <- ggplot(ej1, aes(x = fecha, y = n.tx)) +
+  geom_line(color = "grey60") +
+  geom_point(data = ej1[which(ej1$alerta), ], color = "red", size = 2) +
+  labs(title = "Transacciones por día y días con alerta",
+       subtitle = paste0("ventana = ", ventana, ", k.alerta = ", k.alerta),
+       x = "Fecha", y = "Transacciones") +
+  theme_minimal()
+ggsave("info/figuras/ej1_alertas.png", grafico.ej1, width = 8, height = 4.5, dpi = 150)
+grafico.ej1
+```
+
 ## Ejercicio 2 — Ley de Benford por cantón
 
 ## Ejercicio 3 — Valor acumulado con interés
