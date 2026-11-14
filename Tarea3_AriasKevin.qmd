@@ -125,3 +125,21 @@ Con una tasa anual de `r tasa.anual` (mensual de `r round(ej3$tasa.mensual, 6)`)
 #| label: tabla-ej3
 knitr::kable(ej3$tabla, digits = 4, format.args = list(big.mark = " "))
 ```
+
+```{r}
+#| label: grafico-ej3
+datos.ej3 <- rbind(
+  data.frame(mes = ej3$tabla$mes, tipo = "Monto depositado",
+             valor = ej3$tabla$monto),
+  data.frame(mes = ej3$tabla$mes, tipo = "Valor al 31-dic",
+             valor = ej3$tabla$monto * ej3$tabla$factor))
+
+grafico.ej3 <- ggplot(datos.ej3, aes(x = factor(mes), y = valor / 1e6, fill = tipo)) +
+  geom_col(position = "dodge") +
+  labs(title = paste0("Canal ", canal.interes, ": monto mensual y su valor al 31-dic"),
+       x = "Mes", y = "Millones de colones", fill = NULL) +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+ggsave("info/figuras/ej3_valor_acumulado.png", grafico.ej3, width = 8, height = 4.5, dpi = 150)
+grafico.ej3
+```
