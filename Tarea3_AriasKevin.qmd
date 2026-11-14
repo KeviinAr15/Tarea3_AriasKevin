@@ -43,6 +43,14 @@ ej1 <- alerta.movil(tx, ventana, k.alerta)
 resp["1A"] <- sum(ej1$alerta, na.rm = TRUE)
 resp["1B"] <- format(min(ej1$fecha[which(ej1$alerta)]))
 resp["1C"] <- sum(alerta.movil(tx, 7, 2)$alerta, na.rm = TRUE)
+
+# Ejercicio 2
+ej2 <- benford.canton(tx, canal.benford, cantones)
+ej2.web <- benford.canton(tx, "Web", cantones)
+resp["2A"] <- sprintf("%.4f", benford.mad(tx$monto_crc[tx$canal == canal.benford]))
+resp["2B"] <- ej2$canton[1]
+resp["2C"] <- sum(ej2$mad > 0.015)
+resp["2D"] <- ej2.web$canton[1]
 ```
 
 ```{r}
@@ -74,5 +82,11 @@ grafico.ej1
 ```
 
 ## Ejercicio 2 — Ley de Benford por cantón
+En el canal `r canal.benford` la MAD de todos los cantones juntos es `r resp["2A"]`. Por cantón, la mayor MAD es la de `r resp["2B"]` y hay `r resp["2C"]` cantones en no conformidad.
+
+```{r}
+#| label: tabla-ej2
+knitr::kable(head(ej2, 10), digits = 4, row.names = FALSE)
+```
 
 ## Ejercicio 3 — Valor acumulado con interés

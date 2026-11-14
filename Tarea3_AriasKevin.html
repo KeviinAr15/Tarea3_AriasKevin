@@ -2239,10 +2239,10 @@ vertical-align: -.125em;
 <pre><code>RESULTADO_1A = 19
 RESULTADO_1B = 2025-02-01
 RESULTADO_1C = 31
-RESULTADO_2A = pendiente
-RESULTADO_2B = pendiente
-RESULTADO_2C = pendiente
-RESULTADO_2D = pendiente
+RESULTADO_2A = 0.0032
+RESULTADO_2B = Belén
+RESULTADO_2C = 0
+RESULTADO_2D = Guácimo
 RESULTADO_3A = pendiente
 RESULTADO_3B = pendiente
 RESULTADO_3C = pendiente</code></pre>
@@ -2423,6 +2423,95 @@ RESULTADO_3C = pendiente</code></pre>
 </section>
 <section id="ejercicio-2-ley-de-benford-por-cantón" class="level2">
 <h2 class="anchored" data-anchor-id="ejercicio-2-ley-de-benford-por-cantón">Ejercicio 2 — Ley de Benford por cantón</h2>
+<p>En el canal SINPE Móvil la MAD de todos los cantones juntos es 0.0032. Por cantón, la mayor MAD es la de Belén y hay 0 cantones en no conformidad.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(ej2, <span class="dv">10</span>), <span class="at">digits =</span> <span class="dv">4</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: right;">cod_canton</th>
+<th style="text-align: left;">canton</th>
+<th style="text-align: right;">n</th>
+<th style="text-align: right;">mad</th>
+<th style="text-align: left;">clase</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">407</td>
+<td style="text-align: left;">Belén</td>
+<td style="text-align: right;">1109</td>
+<td style="text-align: right;">0.0143</td>
+<td style="text-align: left;">conformidad marginal</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">511</td>
+<td style="text-align: left;">Hojancha</td>
+<td style="text-align: right;">471</td>
+<td style="text-align: right;">0.0139</td>
+<td style="text-align: left;">conformidad marginal</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">506</td>
+<td style="text-align: left;">Cañas</td>
+<td style="text-align: right;">738</td>
+<td style="text-align: right;">0.0135</td>
+<td style="text-align: left;">conformidad marginal</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">115</td>
+<td style="text-align: left;">Montes De Oca</td>
+<td style="text-align: right;">431</td>
+<td style="text-align: right;">0.0109</td>
+<td style="text-align: left;">conformidad aceptable</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">602</td>
+<td style="text-align: left;">Esparza</td>
+<td style="text-align: right;">377</td>
+<td style="text-align: right;">0.0089</td>
+<td style="text-align: left;">conformidad aceptable</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">106</td>
+<td style="text-align: left;">Aserrí</td>
+<td style="text-align: right;">676</td>
+<td style="text-align: right;">0.0088</td>
+<td style="text-align: left;">conformidad aceptable</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">305</td>
+<td style="text-align: left;">Turrialba</td>
+<td style="text-align: right;">1266</td>
+<td style="text-align: right;">0.0087</td>
+<td style="text-align: left;">conformidad aceptable</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">705</td>
+<td style="text-align: left;">Matina</td>
+<td style="text-align: right;">938</td>
+<td style="text-align: right;">0.0086</td>
+<td style="text-align: left;">conformidad aceptable</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">604</td>
+<td style="text-align: left;">Montes De Oro</td>
+<td style="text-align: right;">1107</td>
+<td style="text-align: right;">0.0086</td>
+<td style="text-align: left;">conformidad aceptable</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">302</td>
+<td style="text-align: left;">Paraíso</td>
+<td style="text-align: right;">1237</td>
+<td style="text-align: right;">0.0086</td>
+<td style="text-align: left;">conformidad aceptable</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </section>
 <section id="ejercicio-3-valor-acumulado-con-interés" class="level2">
 <h2 class="anchored" data-anchor-id="ejercicio-3-valor-acumulado-con-interés">Ejercicio 3 — Valor acumulado con interés</h2>
