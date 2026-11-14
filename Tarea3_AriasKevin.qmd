@@ -89,4 +89,26 @@ En el canal `r canal.benford` la MAD de todos los cantones juntos es `r resp["2A
 knitr::kable(head(ej2, 10), digits = 4, row.names = FALSE)
 ```
 
+```{r}
+#| label: grafico-ej2
+montos.canal <- tx$monto_crc[tx$canal == canal.benford]
+digito <- montos.canal %/% 10^floor(log10(montos.canal))
+datos.benford <- data.frame(digito = 1:9,
+                            observado = tabulate(digito, nbins = 9) / length(digito),
+                            benford = log10(1 + 1 / (1:9)))
+
+grafico.ej2 <- ggplot(datos.benford, aes(x = digito)) +
+  geom_col(aes(y = observado), fill = "steelblue") +
+  geom_line(aes(y = benford), color = "red") +
+  geom_point(aes(y = benford), color = "red") +
+  scale_x_continuous(breaks = 1:9) +
+  labs(title = paste("Primer dígito en", canal.benford, "contra la ley de Benford"),
+       subtitle = "Barras: proporción observada · línea roja: Benford",
+       x = "Primer dígito", y = "Proporción") +
+  theme_minimal()
+ggsave("info/figuras/ej2_benford.png", grafico.ej2, width = 8, height = 4.5, dpi = 150)
+grafico.ej2
+```
+
+Los cantones con mayor MAD son de los que tienen menos transacciones (columna n). No parece fraude: con pocos datos las proporciones varían más por azar.
 ## Ejercicio 3 — Valor acumulado con interés
