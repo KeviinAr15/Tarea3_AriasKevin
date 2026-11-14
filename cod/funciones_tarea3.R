@@ -1,6 +1,6 @@
 # Funciones de los ejercicios 1, 2 y 3.
 
-# Función 1
+# Función ejercicio 1
 # alerta.movil(df, ventana, k.alerta)
 # Recibe: df = base de transacciones (columnas fecha e id_tx)
 # ventana = días previos que se usan para la media
@@ -33,7 +33,7 @@ alerta.movil <- function(df, ventana, k.alerta) {
   por.dia
 }
 
-# función 2
+# función ejercicio 2
 # benford.mad(x)
 # Recibe: x = vector de montos
 # Devuelve: la MAD entre la proporción
@@ -74,4 +74,31 @@ benford.canton <- function(df, canal, cantones) {
                          c("cod_canton", "canton", "n", "mad", "clase")]
   rownames(resultado) <- NULL
   resultado
+}
+
+
+# funcion ejercicio 3
+# valor.acumulado(df, tasa.anual, canal)
+# Recibe: df = base de transacciones, tasa.anual = tasa efectiva
+# anual en decimal, canal = canal que se deposita
+# Devuelve: lista con tabla (mes, monto, factor), tasa.mensual,
+# va (valor acumulado al 31-dic) e interes (va - montos)
+# ------------------------------------------------------------
+valor.acumulado <- function(df, tasa.anual, canal) {
+  datos.canal <- df[df$canal == canal, ]
+  mes <- as.integer(format(as.Date(datos.canal$fecha), "%m"))
+
+  # as.numeric() evita que la suma se desborde (pasa de 2 147 483 647)
+  monto <- tapply(as.numeric(datos.canal$monto_crc), mes, sum)
+
+  tasa.mensual <- (1 + tasa.anual)^(1 / 12) - 1
+  tabla <- data.frame(mes = as.integer(names(monto)),
+                      monto = as.numeric(monto))
+  tabla$factor <- (1 + tasa.mensual)^(12 - tabla$mes)
+
+  va <- sum(tabla$monto * tabla$factor)
+  list(tabla = tabla,
+       tasa.mensual = tasa.mensual,
+       va = va,
+       interes = va - sum(tabla$monto))
 }
