@@ -32,3 +32,46 @@ alerta.movil <- function(df, ventana, k.alerta) {
   rownames(por.dia) <- NULL
   por.dia
 }
+
+# función 2
+# benford.mad(x)
+# Recibe: x = vector de montos
+# Devuelve: la MAD entre la proporción
+# observada de cada primer dígito y la ley de Benford
+benford.mad <- function(x) {
+  digito <- x %/% 10^floor(log10(x))
+  p.obs <- tabulate(digito, nbins = 9) / length(digito)
+  p.benford <- log10(1 + 1 / (1:9))
+  mean(abs(p.obs - p.benford))
+}
+
+
+
+# benford.canton(df, canal, cantones)
+# Recibe: df = base de transacciones, canal = canal a auditar,
+# cantones = catálogo con cod_canton y canton.
+# Devuelve: data frame con cod_canton, canton, n, mad y clase, 
+# ordenado de mayor a menor MAD.
+benford.canton <- function(df, canal, cantones) {
+  datos.canal <- df[df$canal == canal, ]
+
+  n <- tapply(datos.canal$monto_crc, datos.canal$cod_canton, length)
+  mad <- tapply(datos.canal$monto_crc, datos.canal$cod_canton, benford.mad)
+
+  resultado <- data.frame(cod_canton = as.integer(names(mad)),
+                          n = as.integer(n),
+                          mad = as.numeric(mad))
+  resultado$canton <- cantones$canton[match(resultado$cod_canton,
+                                            cantones$cod_canton)]
+  resultado$clase <- cut(resultado$mad,
+                         breaks = c(-Inf, 0.006, 0.012, 0.015, Inf),
+                         labels = c("conformidad cercana",
+                                    "conformidad aceptable",
+                                    "conformidad marginal",
+                                    "no conformidad"))
+
+  resultado <- resultado[order(resultado$mad, decreasing = TRUE),
+                         c("cod_canton", "canton", "n", "mad", "clase")]
+  rownames(resultado) <- NULL
+  resultado
+}
